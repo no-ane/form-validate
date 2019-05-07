@@ -1,0 +1,28 @@
+{
+  "name": "validate-form-p",
+  "version": "1.0.0",
+  "description": "validate form",
+  "keywords": [
+    "validate"
+  ],
+  "homepage": "https://github.com/no-ane/form-validate-p.git",
+  "author": "c.wzpan@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:no-ane/form-validate-p.git"
+  },
+  "main": "./src/index",
+  "module": "./index",
+  "bugs": {
+    "url": "https://github.com/no-ane/form-validate-p/issues"
+  },
+  "licenses": "MIT",
+  "scripts": {
+    "build": "babel src/index.js --out-file ./lib/index.js --presets=es2015"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  }
+}
