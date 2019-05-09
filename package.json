@@ -1,6 +1,6 @@
 {
   "name": "validate-form-p",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "validate form",
   "keywords": [
     "validate"
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/no-ane/form-validate-p/issues"
   },
-  "licenses": "MIT",
+  "license": "MIT",
   "scripts": {
     "build": "babel src/index.js --out-file ./lib/index.js --presets=es2015"
   },
