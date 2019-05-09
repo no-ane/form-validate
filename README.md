@@ -2,7 +2,7 @@
 
 在前端许多逻辑中，我们都会出现到表单验证这一部分逻辑。
 
-近日突然又用到 ThinkPHP 被其表单验证深深的迷住。
+近日突然又用到 __ThinkPHP__ 被其表单验证深深的迷住。
 
 故倒腾出前端一套类似的做法
 
@@ -70,16 +70,18 @@ console.log(result)
 console.log(validateForm.getError())
 ```
 
+## 体验
+<iframe src="https://codesandbox.io/embed/l5jwkv5w17?fontsize=14" title="l5jwkv5w17" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ## TODO
 
 附加条件中的
 
-[ ] between
-[ ] notbetween
-[ ] expire
-[ ] ip_allow
-[ ] ip_deny
+- [ ] between
+- [ ] notbetween
+- [ ] expire
+- [ ] ip_allow
+- [ ] ip_deny
 
 
 ## 开源协议
