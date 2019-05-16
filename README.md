@@ -2,9 +2,7 @@
 
 在前端许多逻辑中，我们都会出现到表单验证这一部分逻辑。
 
-近日突然又用到 __ThinkPHP__ 被其表单验证深深的迷住。
-
-故倒腾出前端一套类似的做法
+抽象出来，即可让我们极大的减少工作量
 
 ### rules
 
@@ -33,7 +31,7 @@ require 字段必须、email 邮箱、url URL地址、number 数字
 |equal|验证是否等于某个值，该值由前面的验证规则定义|
 |notequal|验证是否不等于某个值，该值由前面的验证规则定义|
 |in|验证是否在某个范围内，定义的验证规则可以是一个数组或者逗号分割的字符串|
-|notin|验证是否不在某个范围内，定义的验证规则可以是一个数组或者逗号分割的字符串（3.1.2版本新增）|
+|notIn|验证是否不在某个范围内，定义的验证规则可以是一个数组或者逗号分割的字符串|
 |length|验证长度，定义的验证规则可以是一个数字（表示固定长度）或者数字范围（例如3,12 表示长度从3到12的范围）|
 
 
@@ -71,7 +69,8 @@ console.log(validateForm.getError())
 ```
 
 ## 体验
-<iframe src="https://codesandbox.io/embed/l5jwkv5w17?fontsize=14" title="l5jwkv5w17" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+codesanbox.io : https://codesandbox.io/embed/l5jwkv5w17?fontsize=14
 
 ## TODO
 
@@ -94,6 +93,3 @@ import me, { thank } from 'me'
 
 star(me) && thank(you)
 ```
-
-![](http://ww1.sinaimg.cn/large/6d9c0eadgy1fv5vs3p3lfj20b40b474n.jpg)
-
