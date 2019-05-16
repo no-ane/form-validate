@@ -1,20 +1,20 @@
 {
   "name": "validate-form-p",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "validate form",
   "keywords": [
     "validate"
   ],
-  "homepage": "https://github.com/no-ane/form-validate-p.git",
+  "homepage": "https://github.com/no-ane/validate-form-p.git",
   "author": "c.wzpan@gmail.com",
   "repository": {
     "type": "git",
-    "url": "git@github.com:no-ane/form-validate-p.git"
+    "url": "git@github.com:no-ane/validate-form-p.git"
   },
   "main": "./src/index",
   "module": "./index",
   "bugs": {
-    "url": "https://github.com/no-ane/form-validate-p/issues"
+    "url": "https://github.com/no-ane/validate-form-p/issues"
   },
   "license": "MIT",
   "scripts": {
