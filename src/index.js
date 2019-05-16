@@ -245,10 +245,10 @@ export default {
   },
   // function 附加条件
   handleOtherRuleByFunc(rule) {
-    let [fieldName, customRule, errorMessage, condition = 0, otherRule] = rule
+    let [fieldName, value, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
     let ret = this.handleCustomRuleByRequire(rule)
-    if (ret && !otherRule(this.data[fieldName])) {
+    if (ret && !otherRule(this.data[fieldName], value)) {
       ret = false
     }
     return ret
