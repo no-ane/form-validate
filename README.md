@@ -29,7 +29,7 @@ require 字段必须、email 邮箱、url URL地址、number 数字、 phone 手
 |function|函数验证，定义的验证规则是一个函数名|
 |confirm|验证表单中的两个字段是否相同，定义的验证规则是一个字段名|
 |equal|验证是否等于某个值，该值由前面的验证规则定义|
-|notequal|验证是否不等于某个值，该值由前面的验证规则定义|
+|notEqual|验证是否不等于某个值，该值由前面的验证规则定义|
 |in|验证是否在某个范围内，定义的验证规则可以是一个数组或者逗号分割的字符串|
 |notIn|验证是否不在某个范围内，定义的验证规则可以是一个数组或者逗号分割的字符串|
 |length|验证长度，定义的验证规则可以是一个数字（表示固定长度）或者数字范围（例如3,12 表示长度从3到12的范围）|
@@ -100,6 +100,11 @@ const rules = [
   ['expireTs', '1557986437547,1557999437000', 'expireTs不在合法范围内', 1, 'expire'],
   ['ipAllow', '127.0.0.1', 'ip不允许通过', 1, 'ipAllow'],
   ['ipDeny', '127.0.0.2', 'ip不允许通过', 1, 'ipDeny'],
+  ['func', 'func val', 'deny', 1, (data, val) => {
+    console.log(data) // whatever
+    console.log(val) // func val
+    return val === data
+  }],
 ]
 
 // 设置需要验证的数据
