@@ -10,8 +10,14 @@ const formData = {
   reg: 'aaaa',
   in: '2',
   notIn: '2',
-  phone: '',
+  phone: '11122233344',
   equal: 11,
+  notEqual: 11,
+  between: 11,
+  expire: '2018-4-1',
+  expireTs: 1557989437547,
+  ipAllow: '127.0.0.1',
+  ipDeny: '127.0.0.1',
 }
 
 const rules = [
@@ -26,8 +32,14 @@ const rules = [
   ['notIn', [1,2,4,5,6], '在第二个数据范围中', 1, 'notIn'],
   ['phone', 'require', '手机号码必须是存在', 1],
   ['phone', '11', '手机号码必须是11位', 1, 'length'], // 如果上面的条件不满足 这里的错误条件不会促发
+  ['phone', 'phone', '手机号码错误'], // 验证手机号码准确性
   ['equal', 11, '结果不相等', 1, 'equal'],
-  ['equal', 11, '结果相等', 1, 'notEqual'],
+  ['notEqual', 12, '结果相等', 1, 'notEqual'],
+  ['between', '1,22', '不在合法范围内', 1, 'between'],
+  ['expire', '2017-12-22,2018-4-2', 'expire不在合法范围内', 1, 'expire'],
+  ['expireTs', '1557986437547,1557999437000', 'expireTs不在合法范围内', 1, 'expire'],
+  ['ipAllow', '127.0.0.1', 'ip不允许通过', 1, 'ipAllow'],
+  ['ipDeny', '127.0.0.2', 'ip不允许通过', 1, 'ipDeny'],
 ]
 
 const result = validateForm.setData(formData).validate(rules)
