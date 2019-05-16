@@ -11,7 +11,7 @@
 
 ### 验证规则
 
-require 字段必须、email 邮箱、url URL地址、number 数字
+require 字段必须、email 邮箱、url URL地址、number 数字、 phone 手机号码
 
 
 ### 验证条件 （可选）
@@ -114,17 +114,6 @@ console.log(validateForm.getError())
 ## 体验
 
 codesanbox.io : https://codesandbox.io/embed/l5jwkv5w17?fontsize=14
-
-## TODO
-
-附加条件中的
-
-- [x] between
-- [x] notbetween
-- [x] expire
-- [x] ip_allow
-- [x] ip_deny
-
 
 ## 开源协议
 MIT
