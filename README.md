@@ -38,10 +38,47 @@ require 字段必须、email 邮箱、url URL地址、number 数字
 
 ## Usage
 
+SAMPLE DEMO
+
+```js
+import validateForm from 'validate-form-p'
+
+const rules = [
+  ['name', 'reqire', '名字必须存在']
+]
+
+const data = {
+  name: 'leo'
+}
+
+validateForm.setData(data).validate(rules) // ture
+```
+
+```js
+import validateForm from 'validate-form-p'
+
+const rules = [
+  ['name', 'reqire', '名字必须存在']
+]
+
+const rules1 = [
+  ['name', 'reqire', '名字必须存在', 1] // 1: 必须不管data里有没有name字段都进行校验
+]
+
+const data = {
+  phone: ''
+}
+
+validateForm.setData(data).validate(rules) // ture
+validateForm.setData(data).validate(rules1) // false
+console.log(validateForm.getError()) // { name: 名字必须存在 }
+// maybe you want to do : 
+// Toast.info(Object.values(validateFrom.getError()).join('，'))
+```
+
 ```js
 import validateForm from 'validate-form-p'
 // 定义 rules 规则
-
 
 const rules = [
   ['email', 'email', 'email必须填写', 1],
