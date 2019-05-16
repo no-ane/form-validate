@@ -40,7 +40,11 @@ export default {
   error: {},
   // 设置数据
   setData(formData) {
-    this.data = formData
+    if(typeof formData !== 'object') {
+      return new Error('data must be object')
+    }
+    this.data = Object.assign({}, formData)
+    this.error = {} // reset error
     return this
   },
   // 验证规则
