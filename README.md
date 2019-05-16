@@ -1,38 +1,39 @@
-# 表单验证
+# validate-form-p 🎉🎉📄
 
-在前端许多逻辑中，我们都会出现到表单验证这一部分逻辑。
+English | [简体中文](./README-zh_CN.md)
 
-抽象出来，即可让我们极大的减少工作量
+## validator
+
+[![NPM](https://nodei.co/npm/validate-form-p.png)](https://nodei.co/npm/validate-form-p/)
+
+In a lot of the front-end logic, we'll get into the form validation part of the logic.
+
+Abstracted out, can let us reduce workload greatly
 
 ### rules
 
-验证字段,验证规则,错误提示,[验证条件,附加规则]
+Validation fields, validation rules, error messages,[validation conditions, additional rules]
 
 
-### 验证规则
-
-require 字段必须、email 邮箱、url URL地址、number 数字、 phone 手机号码
-
-
-### 验证条件 （可选）
-|值|触发条件|
+### validation conditions (options)
+|Value | trigger condition|
 |---|----|
-|0|存在字段就验证（默认）|
-|1|必须验证|
-|2|值不为空的时候验证|
+|0|Validate if a field exists (default)|
+|1|Must be validated|
+|2|Verify when the value is not empty|
 
 
-### 附加规则
-|规则|说明|
+### additional rules (options)
+|rules|explain|
 |----|----|
-|regex|正则验证，定义的验证规则是一个正则表达式（默认）|
-|function|函数验证，定义的验证规则是一个函数名|
-|confirm|验证表单中的两个字段是否相同，定义的验证规则是一个字段名|
-|equal|验证是否等于某个值，该值由前面的验证规则定义|
-|notEqual|验证是否不等于某个值，该值由前面的验证规则定义|
-|in|验证是否在某个范围内，定义的验证规则可以是一个数组或者逗号分割的字符串|
-|notIn|验证是否不在某个范围内，定义的验证规则可以是一个数组或者逗号分割的字符串|
-|length|验证长度，定义的验证规则可以是一个数字（表示固定长度）或者数字范围（例如3,12 表示长度从3到12的范围）|
+|regex|Regular validation. The validation rule defined is a regular expression (default)|
+|function|Function validation. The validation rule defined is a function name|
+|confirm|To verify that two fields in a form are the same, the validation rule defined is a field name|
+|equal|Verifies that it is equal to a value defined by the previous validation rule|
+|notEqual|Verifies that does not equal a value defined by the previous validation rule|
+|in|To verify that a range is defined, the validation rule can be an array or a comma-separated string|
+|notIn|To verify that the validation rule is not in a range, the defined validation rule can be an array or a comma-separated string|
+|length|Validation length. The defined validation rules can be a number (representing a fixed length) or a number range (for example, 3,12, representing a length range from 3 to 12)|
 
 
 
@@ -44,7 +45,7 @@ SAMPLE DEMO
 import validateForm from 'validate-form-p'
 
 const rules = [
-  ['name', 'reqire', '名字必须存在']
+  ['name', 'reqire', 'The name has to exist']
 ]
 
 const data = {
@@ -58,11 +59,11 @@ validateForm.setData(data).validate(rules) // ture
 import validateForm from 'validate-form-p'
 
 const rules = [
-  ['name', 'reqire', '名字必须存在']
+  ['name', 'reqire', 'The name has to exist']
 ]
 
 const rules1 = [
-  ['name', 'reqire', '名字必须存在', 1] // 1: 必须不管data里有没有name字段都进行校验
+  ['name', 'reqire', 'The name has to exist', 1] // 1: You have to check whether the name field is in the data or not
 ]
 
 const data = {
@@ -71,35 +72,35 @@ const data = {
 
 validateForm.setData(data).validate(rules) // ture
 validateForm.setData(data).validate(rules1) // false
-console.log(validateForm.getError()) // { name: 名字必须存在 }
+console.log(validateForm.getError()) // { name: The name has to exist }
 // maybe you want to do : 
 // Toast.info(Object.values(validateFrom.getError()).join('，'))
 ```
 
 ```js
 import validateForm from 'validate-form-p'
-// 定义 rules 规则
+// Define rules
 
 const rules = [
-  ['email', 'email', 'email必须填写', 1],
-  ['email', 'email', 'email必须是email格式', 1],
-  ['contact', 'url', 'contact必填', 1],
-  ['isNumber', 'number', '必须是数字', 1],
-  ['reuqireButIs2', 'require', 'contact必填', 2],
-  ['password', 'repassword', '两次密码不一致', 1, 'confirm'],
-  ['reg', '', '正则测试不一致', 1, /aava/],
-  ['in', [1,2,4,5,6], '不在第二个数据范围中', 1, 'in'],
-  ['notIn', [1,2,4,5,6], '在第二个数据范围中', 1, 'notIn'],
-  ['phone', 'require', '手机号码必须是存在', 1],
-  ['phone', '11', '手机号码必须是11位', 1, 'length'], // 如果上面的条件不满足 这里的错误条件不会促发
-  ['phone', 'phone', '手机号码错误'], // 验证手机号码准确性
-  ['equal', 11, '结果不相等', 1, 'equal'],
-  ['notEqual', 12, '结果相等', 1, 'notEqual'],
-  ['between', '1,22', '不在合法范围内', 1, 'between'],
-  ['expire', '2017-12-22,2018-4-2', 'expire不在合法范围内', 1, 'expire'],
-  ['expireTs', '1557986437547,1557999437000', 'expireTs不在合法范围内', 1, 'expire'],
-  ['ipAllow', '127.0.0.1', 'ip不允许通过', 1, 'ipAllow'],
-  ['ipDeny', '127.0.0.2', 'ip不允许通过', 1, 'ipDeny'],
+  ['email', 'email', 'Email must be filled in', 1],
+  ['email', 'email', 'Email must be in email format', 1],
+  ['contact', 'url', 'Contact required', 1],
+  ['isNumber', 'number', 'It has to be a number', 1],
+  ['reuqireButIs2', 'require', 'Contact required', 2],
+  ['password', 'repassword', 'The passwords do not match', 1, 'confirm'],
+  ['reg', '', 'The regex tests are inconsistent', 1, /aava/],
+  ['in', [1,2,4,5,6], 'Not in the second data range', 1, 'in'],
+  ['notIn', [1,2,4,5,6], 'In the second data range', 1, 'notIn'],
+  ['phone', 'require', 'The phone number must exist', 1],
+  ['phone', '11', 'The mobile phone number must be 11 digits', 1, 'length'], // If the above condition does not satisfy the error condition here it will not be triggered
+  ['phone', 'phone', 'Wrong mobile phone number'], // Verify phone number accuracy but only in mainland China
+  ['equal', 11, 'Not equal', 1, 'equal'],
+  ['notEqual', 12, 'euqal', 1, 'notEqual'],
+  ['between', '1,22', 'wrong', 1, 'between'],
+  ['expire', '2017-12-22,2018-4-2', 'Expire is not in the lawful domain', 1, 'expire'],
+  ['expireTs', '1557986437547,1557999437000', 'ExpireTs is not in the lawful domain', 1, 'expire'],
+  ['ipAllow', '127.0.0.1', 'IP is not allowed to pass', 1, 'ipAllow'],
+  ['ipDeny', '127.0.0.2', 'IP is not allowed to pass', 1, 'ipDeny'],
   ['func', 'func val', 'deny', 1, (data, val) => {
     console.log(data) // whatever
     console.log(val) // func val
@@ -107,23 +108,23 @@ const rules = [
   }],
 ]
 
-// 设置需要验证的数据
-// 然后进行验证 返回 true or false
+// Set the data to be validated
+// Then verify that it returns true or false
 const result = validateForm.setData(formData).validate(rules)
-// 如果返回为 true 即可直接提交表单
+// If true, the form can be submitted directly
 console.log(result)
-// 如果返回 false 即可通过 getError() 得到错误信息
+// If false is returned, an error message can be obtained by getError()
 console.log(validateForm.getError())
 ```
 
-## 体验
+## Try
 
 codesanbox.io : https://codesandbox.io/embed/l5jwkv5w17?fontsize=14
 
-## 开源协议
+## License
 MIT
 
-## 结语
+## PS
 ```js
 import you, { star } from 'you'
 import me, { thank } from 'me'
