@@ -92,8 +92,14 @@ const rules = [
   ['notIn', [1,2,4,5,6], '在第二个数据范围中', 1, 'notIn'],
   ['phone', 'require', '手机号码必须是存在', 1],
   ['phone', '11', '手机号码必须是11位', 1, 'length'], // 如果上面的条件不满足 这里的错误条件不会促发
+  ['phone', 'phone', '手机号码错误'], // 验证手机号码准确性
   ['equal', 11, '结果不相等', 1, 'equal'],
-  ['equal', 11, '结果相等', 1, 'notEqual'],
+  ['notEqual', 12, '结果相等', 1, 'notEqual'],
+  ['between', '1,22', '不在合法范围内', 1, 'between'],
+  ['expire', '2017-12-22,2018-4-2', 'expire不在合法范围内', 1, 'expire'],
+  ['expireTs', '1557986437547,1557999437000', 'expireTs不在合法范围内', 1, 'expire'],
+  ['ipAllow', '127.0.0.1', 'ip不允许通过', 1, 'ipAllow'],
+  ['ipDeny', '127.0.0.2', 'ip不允许通过', 1, 'ipDeny'],
 ]
 
 // 设置需要验证的数据
@@ -113,11 +119,11 @@ codesanbox.io : https://codesandbox.io/embed/l5jwkv5w17?fontsize=14
 
 附加条件中的
 
-- [ ] between
-- [ ] notbetween
-- [ ] expire
-- [ ] ip_allow
-- [ ] ip_deny
+- [x] between
+- [x] notbetween
+- [x] expire
+- [x] ip_allow
+- [x] ip_deny
 
 
 ## 开源协议
