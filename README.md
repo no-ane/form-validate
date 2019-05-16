@@ -124,7 +124,7 @@ codesanbox.io : https://codesandbox.io/embed/l5jwkv5w17?fontsize=14
 ## License
 MIT
 
-## PS
+## Postscript
 ```js
 import you, { star } from 'you'
 import me, { thank } from 'me'
