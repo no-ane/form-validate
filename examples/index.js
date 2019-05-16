@@ -18,6 +18,7 @@ const formData = {
   expireTs: 1557989437547,
   ipAllow: '127.0.0.1',
   ipDeny: '127.0.0.1',
+  func: 'whatever',
 }
 
 const rules = [
@@ -40,6 +41,11 @@ const rules = [
   ['expireTs', '1557986437547,1557999437000', 'expireTs不在合法范围内', 1, 'expire'],
   ['ipAllow', '127.0.0.1', 'ip不允许通过', 1, 'ipAllow'],
   ['ipDeny', '127.0.0.2', 'ip不允许通过', 1, 'ipDeny'],
+  ['func', 'func val', 'deny', 1, (data, val) => {
+    console.log(data) // whatever
+    console.log(val) // func val
+    return val === data
+  }],
 ]
 
 const result = validateForm.setData(formData).validate(rules)
