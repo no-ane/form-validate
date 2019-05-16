@@ -84,7 +84,7 @@ codesanbox.io : https://codesandbox.io/embed/l5jwkv5w17?fontsize=14
 
 
 ## 开源协议
-MIT，免费拿去用
+MIT
 
 ## 结语
 ```js
