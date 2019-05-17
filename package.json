@@ -1,9 +1,11 @@
 {
   "name": "validate-form-p",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "validate form",
   "keywords": [
-    "validate"
+    "validate",
+    "validate-form",
+    "validate-form-p"
   ],
   "homepage": "https://github.com/no-ane/validate-form-p.git",
   "author": "c.wzpan@gmail.com",
