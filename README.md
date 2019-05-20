@@ -2,41 +2,6 @@
 
 English | [简体中文](./README-zh_CN.md)
 
-## validator
-
-[![NPM](https://nodei.co/npm/validate-form-p.png)](https://nodei.co/npm/validate-form-p/)
-
-In a lot of the front-end logic, we'll get into the form validation part of the logic.
-
-Abstracted out, can let us reduce workload greatly
-
-### rules
-
-Validation fields, validation rules, error messages,[validation conditions, additional rules]
-
-
-### validation conditions (options)
-|Value | trigger condition|
-|---|----|
-|0|Validate if a field exists (default)|
-|1|Must be validated|
-|2|Verify when the value is not empty|
-
-
-### additional rules (options)
-|rules|explain|
-|----|----|
-|regex|Regular validation. The validation rule defined is a regular expression (default)|
-|function|Function validation. The validation rule defined is a function name|
-|confirm|To verify that two fields in a form are the same, the validation rule defined is a field name|
-|equal|Verifies that it is equal to a value defined by the previous validation rule|
-|notEqual|Verifies that does not equal a value defined by the previous validation rule|
-|in|To verify that a range is defined, the validation rule can be an array or a comma-separated string|
-|notIn|To verify that the validation rule is not in a range, the defined validation rule can be an array or a comma-separated string|
-|length|Validation length. The defined validation rules can be a number (representing a fixed length) or a number range (for example, 3,12, representing a length range from 3 to 12)|
-
-
-
 ## Usage
 
 SAMPLE DEMO
@@ -116,6 +81,41 @@ console.log(result)
 // If false is returned, an error message can be obtained by getError()
 console.log(validateForm.getError())
 ```
+
+
+## validator
+
+[![NPM](https://nodei.co/npm/validate-form-p.png)](https://nodei.co/npm/validate-form-p/)
+
+In a lot of the front-end logic, we'll get into the form validation part of the logic.
+
+Abstracted out, can let us reduce workload greatly
+
+### rules
+
+Validation fields, validation rules, error messages,[validation conditions, additional rules]
+
+
+### validation conditions (options)
+|Value | trigger condition|
+|---|----|
+|0|Validate if a field exists (default)|
+|1|Must be validated|
+|2|Verify when the value is not empty|
+
+
+### additional rules (options)
+|rules|explain|
+|----|----|
+|regex|Regular validation. The validation rule defined is a regular expression (default)|
+|function|Function validation. The validation rule defined is a function name|
+|confirm|To verify that two fields in a form are the same, the validation rule defined is a field name|
+|equal|Verifies that it is equal to a value defined by the previous validation rule|
+|notEqual|Verifies that does not equal a value defined by the previous validation rule|
+|in|To verify that a range is defined, the validation rule can be an array or a comma-separated string|
+|notIn|To verify that the validation rule is not in a range, the defined validation rule can be an array or a comma-separated string|
+|length|Validation length. The defined validation rules can be a number (representing a fixed length) or a number range (for example, 3,12, representing a length range from 3 to 12)|
+
 
 ## Try
 
