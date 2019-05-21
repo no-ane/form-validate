@@ -2,6 +2,14 @@
 
 English | [简体中文](./README-zh_CN.md)
 
+## validator
+
+[![NPM](https://nodei.co/npm/validate-form-p.png)](https://nodei.co/npm/validate-form-p/)
+
+In a lot of the front-end logic, we'll get into the form validation part of the logic.
+
+Abstracted out, can let us reduce workload greatly
+
 ## Usage
 
 SAMPLE DEMO
@@ -81,15 +89,6 @@ console.log(result)
 // If false is returned, an error message can be obtained by getError()
 console.log(validateForm.getError())
 ```
-
-
-## validator
-
-[![NPM](https://nodei.co/npm/validate-form-p.png)](https://nodei.co/npm/validate-form-p/)
-
-In a lot of the front-end logic, we'll get into the form validation part of the logic.
-
-Abstracted out, can let us reduce workload greatly
 
 ### rules
 
