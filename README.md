@@ -90,7 +90,7 @@ console.log(result)
 console.log(validateForm.getError())
 ```
 
-### rules
+### Rules
 
 Validation fields, validation rules, error messages,[validation conditions, additional rules]
 
