@@ -15,43 +15,43 @@
 SAMPLE DEMO
 
 ```js
-import validateForm from 'validate-form-p'
+import validator from 'validate-form-p'
 
 const rules = [
-  ['name', 'reqire', '名字必须存在']
+  ['name', 'require', '名字必须存在']
 ]
 
 const data = {
   name: 'leo'
 }
 
-validateForm.setData(data).validate(rules) // ture
+validator.setData(data).validate(rules) // ture
 ```
 
 ```js
-import validateForm from 'validate-form-p'
+import validator from 'validate-form-p'
 
 const rules = [
-  ['name', 'reqire', '名字必须存在']
+  ['name', 'require', '名字必须存在']
 ]
 
 const rules1 = [
-  ['name', 'reqire', '名字必须存在', 1] // 1: 必须不管data里有没有name字段都进行校验
+  ['name', 'require', '名字必须存在', 1] // 1: 必须不管data里有没有name字段都进行校验
 ]
 
 const data = {
   phone: ''
 }
 
-validateForm.setData(data).validate(rules) // ture
-validateForm.setData(data).validate(rules1) // false
-console.log(validateForm.getError()) // { name: 名字必须存在 }
+validator.setData(data).validate(rules) // ture
+validator.setData(data).validate(rules1) // false
+console.log(validator.getError()) // { name: 名字必须存在 }
 // maybe you want to do : 
 // Toast.info(Object.values(validateFrom.getError()).join('，'))
 ```
 
 ```js
-import validateForm from 'validate-form-p'
+import validator from 'validate-form-p'
 // 定义 rules 规则
 
 const rules = [
@@ -83,11 +83,11 @@ const rules = [
 
 // 设置需要验证的数据
 // 然后进行验证 返回 true or false
-const result = validateForm.setData(formData).validate(rules)
+const result = validator.setData(formData).validate(rules)
 // 如果返回为 true 即可直接提交表单
 console.log(result)
 // 如果返回 false 即可通过 getError() 得到错误信息
-console.log(validateForm.getError())
+console.log(validator.getError())
 ```
 
 ### Rules

@@ -15,43 +15,43 @@ Abstracted out, can let us reduce workload greatly
 SAMPLE DEMO
 
 ```js
-import validateForm from 'validate-form-p'
+import validator from 'validate-form-p'
 
 const rules = [
-  ['name', 'reqire', 'The name has to exist']
+  ['name', 'require', 'The name has to exist']
 ]
 
 const data = {
   name: 'leo'
 }
 
-validateForm.setData(data).validate(rules) // ture
+validator.setData(data).validate(rules) // ture
 ```
 
 ```js
-import validateForm from 'validate-form-p'
+import validator from 'validate-form-p'
 
 const rules = [
-  ['name', 'reqire', 'The name has to exist']
+  ['name', 'require', 'The name has to exist']
 ]
 
 const rules1 = [
-  ['name', 'reqire', 'The name has to exist', 1] // 1: You have to check whether the name field is in the data or not
+  ['name', 'require', 'The name has to exist', 1] // 1: You have to check whether the name field is in the data or not
 ]
 
 const data = {
   phone: ''
 }
 
-validateForm.setData(data).validate(rules) // ture
-validateForm.setData(data).validate(rules1) // false
-console.log(validateForm.getError()) // { name: The name has to exist }
+validator.setData(data).validate(rules) // ture
+validator.setData(data).validate(rules1) // false
+console.log(validator.getError()) // { name: The name has to exist }
 // maybe you want to do : 
 // Toast.info(Object.values(validateFrom.getError()).join('，'))
 ```
 
 ```js
-import validateForm from 'validate-form-p'
+import validator from 'validate-form-p'
 // Define rules
 
 const rules = [
@@ -83,11 +83,11 @@ const rules = [
 
 // Set the data to be validated
 // Then verify that it returns true or false
-const result = validateForm.setData(formData).validate(rules)
+const result = validator.setData(formData).validate(rules)
 // If true, the form can be submitted directly
 console.log(result)
 // If false is returned, an error message can be obtained by getError()
-console.log(validateForm.getError())
+console.log(validator.getError())
 ```
 
 ### Rules
