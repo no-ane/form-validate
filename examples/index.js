@@ -1,4 +1,4 @@
-const validateForm = require('../index').default
+const validator = require('../index').default
 
 const formData = {
   email: '123123@12.com', // 判断
@@ -48,6 +48,6 @@ const rules = [
   }],
 ]
 
-const result = validateForm.setData(formData).validate(rules)
+const result = validator.setData(formData).validate(rules)
 console.log(result)
-console.log(validateForm.getError())
+console.log(validator.getError())
