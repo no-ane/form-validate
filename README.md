@@ -47,7 +47,7 @@ validator.setData(data).validate(rules) // ture
 validator.setData(data).validate(rules1) // false
 console.log(validator.getError()) // { name: The name has to exist }
 // maybe you want to do : 
-// Toast.info(Object.values(validateFrom.getError()).join('，'))
+// Toast.info(Object.values(validator.getError()).join('，'))
 ```
 
 ```js
