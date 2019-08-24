@@ -110,7 +110,7 @@ Validation fields, validation rules, error messages,[validation conditions, addi
 
 ## Try
 
-codesanbox.io : https://codesandbox.io/embed/sleepy-pond-pkiti?fontsize=14
+codesanbox.io: https://codesandbox.io/embed/festive-field-k66vh
 
 ## License
 MIT
