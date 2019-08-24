@@ -86,6 +86,8 @@ export default {
   // 验证条件
   _validateByCondition(rule = []) {
     let [fieldName,,, condition = 0] = rule
+    // 转译成数字
+    condition = Number(condition) || 0
     // 如果有字段，进行校验， 没有允许通过
     if (condition === 0) {
       if (hasOwnProperty(this.data, fieldName)) {
