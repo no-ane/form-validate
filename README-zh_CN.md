@@ -54,40 +54,24 @@ console.log(validator.getError()) // { name: 名字必须存在 }
 import validator from 'validate-form-p'
 // 定义 rules 规则
 
-const rules = [
-  ['email', 'email', 'email必须填写', 1],
-  ['email', 'email', 'email必须是email格式', 1],
-  ['contact', 'url', 'contact必填', 1],
-  ['isNumber', 'number', '必须是数字', 1],
-  ['reuqireButIs2', 'require', 'contact必填', 2],
-  ['password', 'repassword', '两次密码不一致', 1, 'confirm'],
-  ['reg', '', '正则测试不一致', 1, /aava/],
-  ['in', [1,2,4,5,6], '不在第二个数据范围中', 1, 'in'],
-  ['notIn', [1,2,4,5,6], '在第二个数据范围中', 1, 'notIn'],
-  ['phone', 'require', '手机号码必须是存在', 1],
-  ['phone', '11', '手机号码必须是11位', 1, 'length'], // 如果上面的条件不满足 这里的错误条件不会促发
-  ['phone', 'phone', '手机号码错误'], // 验证手机号码准确性
-  ['equal', 11, '结果不相等', 1, 'equal'],
-  ['notEqual', 12, '结果相等', 1, 'notEqual'],
-  ['between', '1,22', '不在合法范围内', 1, 'between'],
-  ['expire', '2017-12-22,2018-4-2', 'expire不在合法范围内', 1, 'expire'],
-  ['expireTs', '1557986437547,1557999437000', 'expireTs不在合法范围内', 1, 'expire'],
-  ['ipAllow', '127.0.0.1', 'ip不允许通过', 1, 'ipAllow'],
-  ['ipDeny', '127.0.0.2', 'ip不允许通过', 1, 'ipDeny'],
-  ['func', 'func val', 'deny', 1, (data, val) => {
-    console.log(data) // whatever
-    console.log(val) // func val
-    return val === data
-  }],
-]
+const formData = {
+  name: "小明",
+  number: "2"
+};
 
-// 设置需要验证的数据
-// 然后进行验证 返回 true or false
-const result = validator.setData(formData).validate(rules)
-// 如果返回为 true 即可直接提交表单
-console.log(result)
-// 如果返回 false 即可通过 getError() 得到错误信息
-console.log(validator.getError())
+const rules = [
+  ["name", "require", "名字必须填写"],
+  ["name", "小明", "我只能叫小明哦", "0", "equal"],
+  [
+    "number",
+    "2",
+    "值不能为2",
+    0,
+    (value, secondIndexValue) => {
+      return value !== secondIndexValue;
+    }
+  ]
+];
 ```
 
 ### Rules

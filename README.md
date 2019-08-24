@@ -54,32 +54,24 @@ console.log(validator.getError()) // { name: The name has to exist }
 import validator from 'validate-form-p'
 // Define rules
 
+const formData = {
+  name: "xiaoming",
+  number: "2"
+};
+
 const rules = [
-  ['email', 'email', 'Email must be filled in', 1],
-  ['email', 'email', 'Email must be in email format', 1],
-  ['contact', 'url', 'Contact required', 1],
-  ['isNumber', 'number', 'It has to be a number', 1],
-  ['reuqireButIs2', 'require', 'Contact required', 2],
-  ['password', 'repassword', 'The passwords do not match', 1, 'confirm'],
-  ['reg', '', 'The regex tests are inconsistent', 1, /aava/],
-  ['in', [1,2,4,5,6], 'Not in the second data range', 1, 'in'],
-  ['notIn', [1,2,4,5,6], 'In the second data range', 1, 'notIn'],
-  ['phone', 'require', 'The phone number must exist', 1],
-  ['phone', '11', 'The mobile phone number must be 11 digits', 1, 'length'], // If the above condition does not satisfy the error condition here it will not be triggered
-  ['phone', 'phone', 'Wrong mobile phone number'], // Verify phone number accuracy but only in mainland China
-  ['equal', 11, 'Not equal', 1, 'equal'],
-  ['notEqual', 12, 'euqal', 1, 'notEqual'],
-  ['between', '1,22', 'wrong', 1, 'between'],
-  ['expire', '2017-12-22,2018-4-2', 'Expire is not in the lawful domain', 1, 'expire'],
-  ['expireTs', '1557986437547,1557999437000', 'ExpireTs is not in the lawful domain', 1, 'expire'],
-  ['ipAllow', '127.0.0.1', 'IP is not allowed to pass', 1, 'ipAllow'],
-  ['ipDeny', '127.0.0.2', 'IP is not allowed to pass', 1, 'ipDeny'],
-  ['func', 'func val', 'deny', 1, (data, val) => {
-    console.log(data) // whatever
-    console.log(val) // func val
-    return val === data
-  }],
-]
+  ["name", "require", "The name is empty"],
+  ["name", "xiaoming", "My name is xiaoming", 0, "equal"],
+  [
+    "number",
+    "2",
+    "The value can't be 2.",
+    0,
+    (value, secondIndexValue) => {
+      return value !== secondIndexValue;
+    }
+  ]
+];
 
 // Set the data to be validated
 // Then verify that it returns true or false
