@@ -34,6 +34,12 @@ const hasOwnProperty = (obj, key) => obj.hasOwnProperty(key)
 // 判断不为空
 const isNoNull = (val) => val !== undefined && val !== null && val !== ''
 
+// 验证类型
+const customRules = ['require','email','url','number','phone']
+
+// 其他自定义类型
+const otherRules = ['equal','notEqual','confirm','in','notIn','length','between','notBetween','expire','ipAllow','ipDeny']
+
 export default {
   data: {},
   error: {},
@@ -76,9 +82,12 @@ export default {
   // 验证单条规则
   _validateByRuleOne(rule = []) {
     // 如果必要条件没有的话 就直接退出吧
-    let [fieldName, customRule, errorMessage] = rule
-    if (!isNoNull(fieldName) || !isNoNull(customRule) || !isNoNull(errorMessage)) {
-      return new Error('规则设置错误 必须要有 验证字段,验证规则,错误提示')
+    let [fieldName, customRule, errorMessage, type, otherRule] = rule
+    if (!otherRule && !customRules.includes(customRule)) {
+      throw Error(`The rule is wrong. Your rules must be one of ${customRules.map(v => v)} if you don't use additional rules`)
+    }
+    if (!isNoNull(fieldName) || !isNoNull(errorMessage)) {
+      throw Error('The rule is wrong. It must have fileName, validate rules, error message')
     }
     // 验证条件 先解决这个问题
     return this._validateByCondition(rule)
@@ -125,16 +134,17 @@ export default {
   // 使用默认的条件 如require
   _validateByCustomRule(rule) {
     let [, customRule] = rule
+    const [_require, email, url, number, phone] = customRules
     switch (customRule) {
-      case 'require':
+      case _require:
         return this.handleCustomRuleByRequire(rule)
-      case 'email':
+      case email:
         return this.handleCustomRuleByEmail(rule)
-      case 'url':
+      case url:
         return this.handleCustomRuleByUrl(rule)
-      case 'number':
+      case number:
         return this.handleCustomRuleByNumber(rule)
-      case 'phone':
+      case phone:
         return this.handleCustomRuleByPhone(rule)
     }
   },
@@ -150,28 +160,29 @@ export default {
       return this.handleOtherRuleByFunc(rule)
     }
     if (typeof otherRule === 'string') {
+      const [equal, notEqual, confirm, _in, notIn, length, between, notBetween, expire, ipAllow, ipDeny] = otherRules;
       switch (otherRule) {
-        case 'equal':
+        case equal:
           return this.handleOtherRuleByEqual(rule)
-        case 'notEqual':
+        case notEqual:
           return !this.handleOtherRuleByEqual(rule)
-        case 'confirm':
+        case confirm:
           return this.handleOtherRuleByConfirm(rule)
-        case 'in':
+        case _in:
           return this.handleOtherRuleByIn(rule)
-        case 'notIn':
+        case notIn:
           return !this.handleOtherRuleByIn(rule)
-        case 'length':
+        case length:
           return this.handleOtherRuleByLength(rule)
-        case 'between':
+        case between:
           return this.handleOtherRuleByBetween(rule)
-        case 'notBetween':
+        case notBetween:
           return !this.handleOtherRuleByBetween(rule)
-        case 'expire':
+        case expire:
           return this.handleOtherRuleByExpire(rule)
-        case 'ipAllow':
+        case ipAllow:
           return this.handleOtherRuleByIpAllow(rule)
-        case 'ipDeny':
+        case ipDeny:
           return !this.handleOtherRuleByIpAllow(rule)
       }
     }
