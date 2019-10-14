@@ -1,4 +1,4 @@
-# validate-form-p 🎉🎉📄
+# validate-form-p
 
 [English](./README.md) | 简体中文
 
