@@ -137,15 +137,15 @@ export default {
     const [_require, email, url, number, phone] = customRules
     switch (customRule) {
       case _require:
-        return this.handleCustomRuleByRequire(rule)
+        return this._handleCustomRuleByRequire(rule)
       case email:
-        return this.handleCustomRuleByEmail(rule)
+        return this._handleCustomRuleByEmail(rule)
       case url:
-        return this.handleCustomRuleByUrl(rule)
+        return this._handleCustomRuleByUrl(rule)
       case number:
-        return this.handleCustomRuleByNumber(rule)
+        return this._handleCustomRuleByNumber(rule)
       case phone:
-        return this.handleCustomRuleByPhone(rule)
+        return this._handleCustomRuleByPhone(rule)
     }
   },
   // 使用自定义规则 如regex
@@ -154,41 +154,41 @@ export default {
     // 这里上层其实拦截了。 不过再做一层 增加健壮性
     if (!otherRule) return false
     if (otherRule instanceof RegExp) {
-      return this.handleOtherRuleByReg(rule)
+      return this._handleOtherRuleByReg(rule)
     }
     if (typeof otherRule === 'function') {
-      return this.handleOtherRuleByFunc(rule)
+      return this._handleOtherRuleByFunc(rule)
     }
     if (typeof otherRule === 'string') {
       const [equal, notEqual, confirm, _in, notIn, length, between, notBetween, expire, ipAllow, ipDeny] = otherRules;
       switch (otherRule) {
         case equal:
-          return this.handleOtherRuleByEqual(rule)
+          return this._handleOtherRuleByEqual(rule)
         case notEqual:
-          return !this.handleOtherRuleByEqual(rule)
+          return !this._handleOtherRuleByEqual(rule)
         case confirm:
-          return this.handleOtherRuleByConfirm(rule)
+          return this._handleOtherRuleByConfirm(rule)
         case _in:
-          return this.handleOtherRuleByIn(rule)
+          return this._handleOtherRuleByIn(rule)
         case notIn:
-          return !this.handleOtherRuleByIn(rule)
+          return !this._handleOtherRuleByIn(rule)
         case length:
-          return this.handleOtherRuleByLength(rule)
+          return this._handleOtherRuleByLength(rule)
         case between:
-          return this.handleOtherRuleByBetween(rule)
+          return this._handleOtherRuleByBetween(rule)
         case notBetween:
-          return !this.handleOtherRuleByBetween(rule)
+          return !this._handleOtherRuleByBetween(rule)
         case expire:
-          return this.handleOtherRuleByExpire(rule)
+          return this._handleOtherRuleByExpire(rule)
         case ipAllow:
-          return this.handleOtherRuleByIpAllow(rule)
+          return this._handleOtherRuleByIpAllow(rule)
         case ipDeny:
-          return !this.handleOtherRuleByIpAllow(rule)
+          return !this._handleOtherRuleByIpAllow(rule)
       }
     }
   },
   // require 默认提供条件
-  handleCustomRuleByRequire(rule) {
+  _handleCustomRuleByRequire(rule) {
     let [fieldName] = rule
     let ret = true
     // 如果不存在就为false
@@ -202,7 +202,7 @@ export default {
     return ret
   },
   // phone 默认提供条件
-  handleCustomRuleByPhone(rule) {
+  _handleCustomRuleByPhone(rule) {
     let [fieldName] = rule
     // 如果不存在就为false
     if (!hasOwnProperty(this.data, fieldName)) {
@@ -211,18 +211,18 @@ export default {
     return /^[1][3,4,5,7,8][0-9]{9}$/.test(this.data[fieldName])
   },
   // email 默认提供条件
-  handleCustomRuleByEmail(rule) {
+  _handleCustomRuleByEmail(rule) {
     var emailReg = /^[-_A-Za-z0-9]+@([_A-Za-z0-9]+\.)+[A-Za-z0-9]{2,3}$/
     let [fieldName] = rule
     // 检验是否存在这个数据
-    let ret = this.handleCustomRuleByRequire(rule)
+    let ret = this._handleCustomRuleByRequire(rule)
     if (ret && !emailReg.test(this.data[fieldName])) {
       ret = false
     }
     return ret
   },
   // url 默认提供条件
-  handleCustomRuleByUrl(rule) {
+  _handleCustomRuleByUrl(rule) {
     // TODO: 感觉这个正则不是特别好
     // http2://www.baidu.com 这种都能通过... 
     function isNoURL (str) {
@@ -230,44 +230,44 @@ export default {
     }
     let [fieldName] = rule
     // 检验是否存在这个数据
-    let ret = this.handleCustomRuleByRequire(rule)
+    let ret = this._handleCustomRuleByRequire(rule)
     if (ret && isNoURL(this.data[fieldName])) {
       ret = false
     }
     return ret
   },
   // number 默认提供条件
-  handleCustomRuleByNumber(rule) {
+  _handleCustomRuleByNumber(rule) {
     let [fieldName] = rule
     // 检验是否存在这个数据
-    let ret = this.handleCustomRuleByRequire(rule)
+    let ret = this._handleCustomRuleByRequire(rule)
     if (ret && (typeof (this.data[fieldName]) !== 'number')) {
       ret = false
     }
     return ret
   },
   // reg 附加条件
-  handleOtherRuleByReg(rule) {
+  _handleOtherRuleByReg(rule) {
     let [fieldName, customRule, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
-    let ret = this.handleCustomRuleByRequire(rule)
+    let ret = this._handleCustomRuleByRequire(rule)
     if (ret && !otherRule.test(this.data[fieldName])) {
       ret = false
     }
     return ret
   },
   // function 附加条件
-  handleOtherRuleByFunc(rule) {
+  _handleOtherRuleByFunc(rule) {
     let [fieldName, value, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
-    let ret = this.handleCustomRuleByRequire(rule)
+    let ret = this._handleCustomRuleByRequire(rule)
     if (ret && !otherRule(this.data[fieldName], value)) {
       ret = false
     }
     return ret
   },
   // equal 附加条件
-  handleOtherRuleByEqual(rule) {
+  _handleOtherRuleByEqual(rule) {
     let [fieldName1, val, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
     const val1 = isNoNull(this.data[fieldName1])
@@ -278,7 +278,7 @@ export default {
     return false
   },
   // confirm 附加条件
-  handleOtherRuleByConfirm(rule) {
+  _handleOtherRuleByConfirm(rule) {
     let [fieldName1, fieldName2, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
     const val1 = isNoNull(this.data[fieldName1])
@@ -289,7 +289,7 @@ export default {
     return false
   },
   // in 附加条件
-  handleOtherRuleByIn(rule) {
+  _handleOtherRuleByIn(rule) {
     let [fieldName1, rangs, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
     const val1 = isNoNull(this.data[fieldName1])
@@ -300,7 +300,7 @@ export default {
     return false
   },
   // length 附加条件
-  handleOtherRuleByLength(rule) {
+  _handleOtherRuleByLength(rule) {
     let [fieldName1, len, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
     const val1 = isNoNull(this.data[fieldName1])
@@ -310,7 +310,7 @@ export default {
     return false
   },
   // between 附加条件
-  handleOtherRuleByBetween(rule) {
+  _handleOtherRuleByBetween(rule) {
     let [fieldName1, val, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
     const val1 = isNoNull(this.data[fieldName1])
@@ -324,7 +324,7 @@ export default {
     return false
   },
   // expire 附加条件
-  handleOtherRuleByExpire(rule) {
+  _handleOtherRuleByExpire(rule) {
     let [fieldName1, val, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
     let val1 = isNoNull(this.data[fieldName1])
@@ -358,7 +358,7 @@ export default {
     return false
   },
   // ipAllow 附加条件
-  handleOtherRuleByIpAllow(rule) {
+  _handleOtherRuleByIpAllow(rule) {
     let [fieldName1, val, errorMessage, condition = 0, otherRule] = rule
     // 检验是否存在这个数据
     let val1 = isNoNull(this.data[fieldName1])
