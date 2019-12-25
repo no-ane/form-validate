@@ -1,5 +1,5 @@
 const assert = require('assert');
-const validator = require('../index').default;
+const validator = require('../index');
 
 describe('validate-type', function () {
   it('init validate type', function () {

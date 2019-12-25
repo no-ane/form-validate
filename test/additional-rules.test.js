@@ -1,5 +1,5 @@
 const assert = require('assert');
-const validator = require('../index').default;
+const validator = require('../index');
 
 describe('additional-rules', function () {
   it('diff error', function () {
